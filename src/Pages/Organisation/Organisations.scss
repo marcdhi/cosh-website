@@ -29,30 +29,29 @@
       }
 
       @media only screen and (min-width: 1400px) {
-        width: 600px;
+        width: 700px;
         height: auto;
         margin-top: auto;
         margin-bottom: auto;
-        top: 25%;
-        margin-right: 2%;
+        top: 15%;
+        margin-right: 1%;
       }
 
       @media only screen and (max-width: 1200px) {
-        width: 500px;
-        height: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-        top: 25%;
-        margin-right: 2%;
+        bottom: -50px;
+        top: auto;
+        transform: rotate(90deg);
+        right: 5%;
+        height: 35%;
       }
 
       @media only screen and (max-width: 600px) {
-        width: 300px;
-        height: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-        top: 50%;
-        margin-right: 2%;
+        transform: rotate(90deg);
+        left: 0px;
+        top: 70%;
+        height: 350px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }
@@ -127,6 +126,7 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    background-color: $lightpurple;
 
     @media only screen and (max-width: 600px) {
       padding: 0;
@@ -134,7 +134,7 @@
   }
 
   .filter-section {
-    position: relative;
+    position: absolute;
     display: block;
     z-index: 1001;
   }
@@ -172,6 +172,7 @@
 
     @media only screen and (max-width: 600px) {
       padding: 0;
+      margin-top: 25px;
     }
   }
 
@@ -197,7 +198,7 @@
       width: 95vw;
       z-index: 1000;
       position: absolute;
-      background-color: white;
+      background-color: $lightpurple;
       padding-left: 5vw;
     }
   }

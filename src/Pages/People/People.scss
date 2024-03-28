@@ -33,19 +33,19 @@
       }
 
       @media only screen and (max-width: 1200px) {
-        width: 500px;
-        height: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-        top: 40%;
-      }
-
-      @media only screen and (max-width: 600px) {
         width: 300px;
         height: auto;
         margin-top: auto;
         margin-bottom: auto;
-        top: 45%;
+        top: 60%;
+      }
+
+      @media only screen and (max-width: 600px) {
+        width: 200px;
+        height: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        top: 70%;
       }
     }
     .il_people2 {
@@ -62,19 +62,19 @@
       }
 
       @media only screen and (max-width: 1200px) {
-        width: 500px;
-        height: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-        top: 45%;
-      }
-
-      @media only screen and (max-width: 600px) {
         width: 300px;
         height: auto;
         margin-top: auto;
         margin-bottom: auto;
-        top: 45%;
+        top: 60%;
+      }
+
+      @media only screen and (max-width: 600px) {
+        width: 200px;
+        height: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        top: 65%;
       }
     }
   }
@@ -149,6 +149,7 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    background-color: $lightpurple;
 
     @media only screen and (max-width: 600px) {
       padding: 0;
@@ -156,7 +157,7 @@
   }
 
   .filter-section {
-    position: relative;
+    position: absolute;
     display: block;
     z-index: 1001;
   }
@@ -194,6 +195,7 @@
 
     @media only screen and (max-width: 600px) {
       padding: 0;
+      margin-top: 25px;
     }
   }
 
@@ -217,10 +219,10 @@
       display: block;
       transform: translateX(0);
       width: 95vw;
-      z-index: 1000;
       position: absolute;
-      background-color: white;
+      background-color: $lightpurple;
       padding-left: 5vw;
+      z-index: 1000;
     }
   }
   .hide {

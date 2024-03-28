@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1002;
 
   .peopleModal {
     display: flex;
@@ -33,9 +34,10 @@
     padding: 2%;
     animation-name: peopleModalAnimation;
     animation-duration: 0.25s;
+    
 
     @media only screen and (max-width: 600px) {
-      width: 60vw;
+      width: 90vw;
     }
 
     .closeBtn {
@@ -73,7 +75,7 @@
       margin-top: 20px;
       gap: 20px;
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: 1200px) {
         grid-template-columns: repeat(1, auto);
       }
 
