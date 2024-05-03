@@ -452,7 +452,7 @@ function Organisation() {
           </div>
 
 
-          <p className="description">{organisation.desc}</p>
+          <p className="description">{organisation.description}</p>
         </div>
         <img className='org-image' src={organisation.image || defaultImage} alt={`${organisation.name} Logo`} />
       </div>
@@ -471,6 +471,7 @@ function Organisation() {
                 <img src={person.image || defaultImage} alt="" />
                 <h3 className=''>{person.name}</h3>
                 <a target='_blank' href={person.link} className='project-name'>{person.project}</a>
+                <p className='project-year'>{person.year}</p>
                 <div className="social-links">
                   {person.github_link && <a href={person.github_link}><FiGithub /></a>}
                   {person.linkedin_link && <a href={person.linkedin_link}><FiLinkedin /></a>}

@@ -217,7 +217,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          // margin: auto;
+          margin: auto;
           gap: 5px;
   
           a {
@@ -239,17 +239,27 @@
           .project-name {
             font-size: 1rem;
             margin-bottom: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin: auto;
             flex-wrap: nowrap;
-            text-wrap: nowrap;
+            text-align: center;
+            padding: auto;
+            // text-wrap: nowrap;
 
             &:hover {
               color: $purple;
             }
           }
+
+          .project-year {
+            margin: 3px;
+            font-size: medium;
+            background-color: transparent;
+            border: 1px solid $purple;
+            color: $purple;
+            padding: 5px;
+            border-radius: 4px;
+            text-align: center;
+        }
 
           .social-links {
             font-size: 2rem;
