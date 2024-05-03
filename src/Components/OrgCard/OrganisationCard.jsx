@@ -24,14 +24,17 @@ export default function OrganisationCard({
      * @param {Object} filters - The filters to apply.
      * @returns {boolean} True if the organisation matches all the filters, false otherwise.
      */
+    
     const matchesFilters = Object.entries(filters).every(([filter, values]) => {
         if (!values.length) return true;
         return filterByFilterKey(organisation, filter, values);
     });
 
+    const slug = organisation.name.toLowerCase().replace(/ /g, '-');
+
     return (
         matchesFilters && (
-            <Link to={`/organisations/${organisation.id}`} className="organisation-card">
+            <Link to={`/organisations/${slug}`} className="organisation-card">
                 <div className="organisation-card__image">
                     <img src={organisation.image || default_image} alt="Organisation Image" />
                 </div>

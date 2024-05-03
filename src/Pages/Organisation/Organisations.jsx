@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import OrganisationsList from '../../Components/OrganisationsList/OrganisationsList';
 import { Helmet } from "react-helmet";
 import './Organisations.scss'
@@ -6,6 +6,9 @@ import il_orgs from '../../Assets/il_orgs.svg';
 import FilterSidebar from '../../Components/FilterSidebar/FilterSidebar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import { BsChevronDoubleRight, BsChevronDoubleDown } from "react-icons/bs";
+import getOrganisations from '../../Helper/getOrganisations';
+import { set } from 'firebase/database';
+import Loading from '../../Components/Loading/Loading';
 
 // Initial filters state
 const initialFilters = {
@@ -24,79 +27,24 @@ const data = {
 };
 
 
-// Organisations data
-const organisationsData = [
-  {
-    id: 1,
-    name: 'Inkscape',
-    categories: 'End-user applications',
-    technology: ['React', 'C++', 'Python', 'C'],
-    desc: 'Inkscape is a professional vector graphics editor for Windows, Mac OS X and Linux. It\'s free and open source.',
-    year: ['2022']
-  },
-  {
-    id: 2,
-    name: 'Postman',
-    categories: 'API Development',
-    technology: ['API', 'Javascript', 'Node.js'],
-    year: ['2021']
-  },
-  {
-    id: 3,
-    name: 'OpenMRS',
-    categories: 'Healthcare',
-    technology: ['Java', 'React', 'MySQL'],
-    year: ['2020']
-  },
-  {
-    id: 4,
-    name: 'Liquid Galaxy',
-    categories: 'Spatial Computing',
-    technology: ['Python', 'C++', 'HTML/CSS'],
-    year: ['2022']
-  },
-  {
-    id: 5,
-    name: 'SymPy',
-    categories: 'Mathematics',
-    technology: ['Python', 'C'],
-    year: ['2021']
-  },
-  {
-    id: 6,
-    name: 'FOSSASIA',
-    categories: 'Open Tech Development',
-    technology: ['Python', 'JavaScript', 'Angular'],
-    year: ['2020']
-  },
-  {
-    id: 7,
-    name: 'Homebrew',
-    categories: 'Package Management',
-    technology: ['Ruby', 'Shell'],
-    year: ['2022']
-  },
-  {
-    id: 8,
-    name: 'Public Lab',
-    categories: 'Environmental Science',
-    technology: ['JavaScript', 'React', 'Python'],
-    year: ['2021']
-  },
-  {
-    id: 9,
-    name: 'Systers',
-    categories: 'Women in Computing',
-    technology: ['Python', 'Java', 'C++'],
-    year: ['2020']
-  },
-];
-
-
 function Organisations() {
   const [filters, setFilters] = useState(initialFilters);
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilterSidebar, setShowFilterSidebar] = useState(false);
+  const [organisations, setOrganisations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    getOrganisations().then(
+        (res)=>{
+            const oss_details = res[0]
+            setOrganisations(oss_details.organisations)
+            setLoading(false);
+        }
+    )
+}, []); 
 
   // Handle filter change
   const handleFilterChange = (filterName, value) => {
@@ -118,12 +66,12 @@ function Organisations() {
     setShowFilterSidebar(!showFilterSidebar);
   };
 
-  // Filter organisations based on search term
-  const filteredOrganisations = organisationsData.filter(org =>
+  const filteredOrganisations = organisations.length > 0 && organisations.filter(org =>
     org.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
+  
+  return (loading ? <Loading/> :
     <div className="organisationsDiv">
       <Helmet>
         <title>Organisations</title>
@@ -147,10 +95,16 @@ function Organisations() {
         <div className={` ${showFilterSidebar ? 'show' : 'organisationsFilterSection'}`}>
           <FilterSidebar initialFilters={initialFilters} data={data} onFilterChange={handleFilterChange} />
         </div>
-        <div className={`organisationsListSection ${showFilterSidebar && "hide"}`}>
-          <SearchBar value={searchTerm} onChange={handleSearchChange} placeholderText={"Organisations"}/>
-          <OrganisationsList organisations={filteredOrganisations} filters={filters} />
-        </div>
+       
+{organisations.length > 0 ? (
+  <div className={`organisationsListSection ${showFilterSidebar && "hide"}`}>
+    <SearchBar value={searchTerm} onChange={handleSearchChange} placeholderText={"Organisations"}/>
+    <OrganisationsList organisations={filteredOrganisations} filters={filters} />
+  </div>
+) : (
+  <div>Loading...</div>
+)}
+
       </div>
     </div>
   )
