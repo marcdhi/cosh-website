@@ -19,15 +19,30 @@ const PeopleModal = ({ details, showModal, setShowModal }) =>
         <h2 className="title">{details.name || "Name"}</h2>
         <img src={details.image || default_people} alt="" />
         <div className="socialMedia">
-          <FaGithub />
-          <FaLinkedin />
-          <FaTwitter />
+          {details.github_link && (
+            <a href={details.github_link} target="_blank" rel="noreferrer">
+              <FaGithub />
+            </a>
+          )}
+          {details.linkedin_link && (
+            <a href={details.linkedin_link} target="_blank" rel="noreferrer">
+              <FaLinkedin />
+            </a>
+          )}
+          {details.twitter_link && (
+            <a href={details.twitter_link} target="_blank" rel="noreferrer">
+              <FaTwitter />
+            </a>
+          )}
         </div>
         <div className="project">
           {details.projects.map((project) => (
             <div key={project.id} className="projectCard">
-              <h2>{project.title}</h2>
-              <p>{project.desc}</p>
+              <div className="projectContent">
+                <h2>{project.title}</h2>
+                <p>{project.desc}</p>
+              </div>
+
               <div className="buttons">
                 <button>More Details</button>
                 <button>Organisation</button>

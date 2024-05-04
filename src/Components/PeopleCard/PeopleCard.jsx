@@ -1,6 +1,6 @@
-import './PeopleCard.scss'
-import filterByFilterKey from '../../Helper/filterByFilterKey';
-import def_image from '../../Assets/default_image.svg'
+import "./PeopleCard.scss";
+import filterByFilterKey from "../../Helper/filterByFilterKey";
+import def_image from "../../Assets/default_image.svg";
 
 /**
  * Renders an people card component.
@@ -13,33 +13,37 @@ import def_image from '../../Assets/default_image.svg'
  */
 
 export default function PeopleCard({
-    default_image = def_image,
-    people,
-    filters
+  default_image = def_image,
+  people,
+  filters,
 }) {
-    /**
-     * Checks if the people matches all the filters.
-     *
-     * @param {Object} filters - The filters to apply.
-     * @returns {boolean} True if the people matches all the filters, false otherwise.
-     */
-    const matchesFilters = Object.entries(filters).every(([filter, values]) => {
-        if (!values.length) return true;
-        return filterByFilterKey(people, filter, values);
-    });
+  /**
+   * Checks if the people matches all the filters.
+   *
+   * @param {Object} filters - The filters to apply.
+   * @returns {boolean} True if the people matches all the filters, false otherwise.
+   */
+  const matchesFilters = Object.entries(filters).every(([filter, values]) => {
+    if (!values.length) return true;
+    return filterByFilterKey(people, filter, values);
+  });
 
-    return (
-        matchesFilters && (
-            <div className="people-card">
-                <div className="people-card__image">
-                    <img src={people.image || default_image} alt="" />
-                </div>
-                <div className="people-card__details">
-                    <h3 className='people-name'>{people.name}</h3>
-                    <p className='people-tag'>{people.categories}</p>
-                    <div>{people.year[0]}</div>
-                </div>
-            </div>
-        ) 
-    );
+  return (
+    matchesFilters && (
+      <div className="people-card">
+        <div className="people-card__image">
+          <img src={people.image || default_image} alt="" />
+        </div>
+        <div className="people-card__details">
+          <h3 className="people-name">{people.name}</h3>
+          <p className="people-tag">{people.categories}</p>
+          <div className="year-list">
+            {people.year.map((year, index) => (
+              <p key={index}>{year}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  );
 }

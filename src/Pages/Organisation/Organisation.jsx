@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import './Organisation.scss';
-import defaultImage from '../../Assets/default_image.svg';
-import { FiTwitter } from 'react-icons/fi';
-import { FiLinkedin } from 'react-icons/fi';
-import { FiGithub } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import il1 from '../../Assets/il_collaborate1.svg';
-import il2 from '../../Assets/il_collaborate2.svg';
-import getOpenSourceData from "../../Helper/getOpenSourceData"
-import Loading from '../../Components/Loading/Loading';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./Organisation.scss";
+import defaultImage from "../../Assets/default_image.svg";
+import { FiTwitter } from "react-icons/fi";
+import { FiLinkedin } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import il1 from "../../Assets/il_collaborate1.svg";
+import il2 from "../../Assets/il_collaborate2.svg";
+import getOpenSourceData from "../../Helper/getOpenSourceData";
+import Loading from "../../Components/Loading/Loading";
 
 function Organisation() {
   let { slug } = useParams();
@@ -415,19 +415,17 @@ function Organisation() {
   //   },
   // ];
 
-
   const [isLoading, setIsLoading] = useState(true);
-
 
   useEffect(async () => {
     // Find the organisation by slug (ID)
     const res = await getOpenSourceData();
-    const oss_details = res[0]
+    const oss_details = res[0];
     const organisationRef = oss_details.organisations;
 
-    
- 
-    const org = organisationRef.find(org => `${org.name.toLowerCase().replace(/ /g, '-')}` === slug);
+    const org = organisationRef.find(
+      (org) => `${org.name.toLowerCase().replace(/ /g, "-")}` === slug
+    );
     if (org) {
       setOrganisation(org);
       setIsLoading(false);
@@ -439,53 +437,80 @@ function Organisation() {
 
   if (!organisation) return <p>Organisation not found.</p>;
 
-  return(
-    isLoading ? 
-    <Loading/> :
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="organisation">
-      
       <div className="organisation-header">
         <div>
-
-          <div className='org-name'>
-            <a target='_blank' href={`${organisation.link}`}>{organisation.name}</a>
+          <div className="org-name">
+            <a target="_blank" href={`${organisation.link}`} rel="noreferrer">
+              {organisation.name}
+            </a>
           </div>
-
 
           <p className="description">{organisation.description}</p>
         </div>
-        <img className='org-image' src={organisation.image || defaultImage} alt={`${organisation.name} Logo`} />
+        <img
+          className="org-image"
+          src={organisation.image || defaultImage}
+          alt={`${organisation.name} Logo`}
+        />
       </div>
-      
-      <h1 className='hero-header'>
-        Students
-      </h1>
+
+      <h1 className="hero-header">Students</h1>
 
       <div className="organisation-hero">
-
         {/* <img src={il1} className="il2" alt="Illustration" /> */}
-        <div className='organisation-participants'>
+        <div className="organisation-participants">
           {organisation.people.map((person) => (
             <div key={person.id} className="person-card">
-              <div className='person-info'>
+              <div className="person-info">
                 <img src={person.image || defaultImage} alt="" />
-                <h3 className=''>{person.name}</h3>
-                <a target='_blank' href={person.link} className='project-name'>{person.project}</a>
-                <p className='project-year'>{person.year}</p>
+                <h3 className="">{person.name}</h3>
+                <a
+                  target="_blank"
+                  href={person.link}
+                  className="project-name"
+                  rel="noreferrer"
+                >
+                  {person.project}
+                </a>
+                <p className="project-year">{person.year}</p>
                 <div className="social-links">
-                  {person.github_link && <a href={person.github_link}><FiGithub /></a>}
-                  {person.linkedin_link && <a href={person.linkedin_link}><FiLinkedin /></a>}
-                  {person.twitter_link && <a href={person.twitter_link}><FiTwitter /></a>}
+                  {person.github_link && (
+                    <a
+                      href={person.github_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FiGithub />
+                    </a>
+                  )}
+                  {person.linkedin_link && (
+                    <a
+                      href={person.linkedin_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FiLinkedin />
+                    </a>
+                  )}
+                  {person.twitter_link && (
+                    <a
+                      href={person.twitter_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FiTwitter />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-
       </div>
-
-
     </div>
   );
 }
