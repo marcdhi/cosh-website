@@ -6,8 +6,7 @@ import il_orgs from '../../Assets/il_orgs.svg';
 import FilterSidebar from '../../Components/FilterSidebar/FilterSidebar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import { BsChevronDoubleRight, BsChevronDoubleDown } from "react-icons/bs";
-import getOrganisations from '../../Helper/getOrganisations';
-import { set } from 'firebase/database';
+import getOpenSourceData from "../../Helper/getOpenSourceData"
 import Loading from '../../Components/Loading/Loading';
 
 // Initial filters state
@@ -18,29 +17,22 @@ const initialFilters = {
   program: [],
 };
 
-// Data for filters
-const data = {
-  categories: ['Open Source', 'Web Development', 'Mobile Development', 'Healthcare', 'Spatial Computing', 'Mathematics', 'Package Management', 'Environmental Science', 'Women in Computing'],
-  technology: ['React', 'Angular', 'Vue', 'Python', 'C++', 'Java', 'JavaScript', 'Node.js', 'Ruby', 'Shell'],
-  year: ['2020', '2021', '2022'],
-  program: ['GSOC', 'Outreachy', 'Season of Docs'],
-};
-
-
 function Organisations() {
   const [filters, setFilters] = useState(initialFilters);
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilterSidebar, setShowFilterSidebar] = useState(false);
   const [organisations, setOrganisations] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [filterData, setFilterData] = useState({});
+  
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    getOrganisations().then(
+    getOpenSourceData().then(
         (res)=>{
             const oss_details = res[0]
             setOrganisations(oss_details.organisations)
+            setFilterData(oss_details.tech_filters)
             setLoading(false);
         }
     )
@@ -93,7 +85,7 @@ function Organisations() {
             )}</button>
         </div>
         <div className={` ${showFilterSidebar ? 'show' : 'organisationsFilterSection'}`}>
-          <FilterSidebar initialFilters={initialFilters} data={data} onFilterChange={handleFilterChange} />
+          <FilterSidebar initialFilters={initialFilters} data={filterData} onFilterChange={handleFilterChange} />
         </div>
        
 {organisations.length > 0 ? (

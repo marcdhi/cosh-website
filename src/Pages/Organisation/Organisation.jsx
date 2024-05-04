@@ -8,7 +8,7 @@ import { FiGithub } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import il1 from '../../Assets/il_collaborate1.svg';
 import il2 from '../../Assets/il_collaborate2.svg';
-import getOrganisations from '../../Helper/getOrganisations';
+import getOpenSourceData from "../../Helper/getOpenSourceData"
 import Loading from '../../Components/Loading/Loading';
 
 function Organisation() {
@@ -421,7 +421,7 @@ function Organisation() {
 
   useEffect(async () => {
     // Find the organisation by slug (ID)
-    const res = await getOrganisations();
+    const res = await getOpenSourceData();
     const oss_details = res[0]
     const organisationRef = oss_details.organisations;
 

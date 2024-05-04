@@ -2,7 +2,7 @@ import { getFirestore, collectionGroup, collection, getDocs, Timestamp, where} f
 
 import db from '../Firebase/Firebase';
 
-async function getOrganisations() {
+async function getOpenSourceData() {
     const orgsCol = collection(db, 'gsoc_archive');
     const orgsSnapshot = await getDocs(orgsCol);
     var orgsList = orgsSnapshot.docs.map(doc => {
@@ -12,4 +12,4 @@ async function getOrganisations() {
     return orgsList;
   }
 
-export default getOrganisations;
+export default getOpenSourceData;

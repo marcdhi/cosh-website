@@ -40,7 +40,7 @@ export default function OrganisationCard({
                 </div>
                 <div className="organisation-card__details">
                     <h3 className='org-name'>{organisation.name || 'Organisation Name'}</h3>
-                    <p className='org-tag'>{organisation.categories}</p>
+                    <p className='org-tag'>{organisation.categories[0]}</p>
                     <div className="tech-stack">
                         {organisation.technology && organisation.technology.map((tech, index) => (
                             <span key={index}>{tech}</span>
