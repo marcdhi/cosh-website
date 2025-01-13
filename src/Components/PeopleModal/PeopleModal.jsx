@@ -18,6 +18,7 @@ const PeopleModal = ({ details, showModal, setShowModal }) => {
         </button>
         <h2 className="title">{details.name || "Name"}</h2>
         <img src={details.image || default_people} alt="" />
+        <p className="degree">{`${details.department} dept, ${details.admission_year}-${details.admission_year+4}`}</p>
         <div className="socialMedia">
           {details.github_link && (
             <a href={details.github_link} target="_blank" rel="noreferrer">

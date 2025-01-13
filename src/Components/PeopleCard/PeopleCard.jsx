@@ -36,6 +36,7 @@ export default function PeopleCard({
         </div>
         <div className="people-card__details">
           <h3 className="people-name">{people.name}</h3>
+          <p className="people-degree">{`${people.department} dept, ${people.admission_year}-${people.admission_year+4}`}</p>
           <p className="people-tag">{people.categories}</p>
           <div className="year-list">
             {people.year.map((year, index) => (
