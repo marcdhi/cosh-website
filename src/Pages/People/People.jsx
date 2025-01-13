@@ -72,17 +72,16 @@ function People() {
 
       {/* Common component for illustrations can be made*/}
       <div className="peopleSection1Container">
-        {/* position of below 2 images has to fixed */}
-        <img
-          src={il_people1}
-          className="il_people1"
-          alt="PeopleIllustration1"
-        />
-        <img
-          src={il_people2}
-          className="il_people2"
-          alt="PeopleIllustration2"
-        />
+          <img
+            src={il_people1}
+            className="il_people1"
+            alt="PeopleIllustration1"
+          />
+          <img
+            src={il_people2}
+            className="il_people2"
+            alt="PeopleIllustration2"
+          />
         <div className="peopleSection1">
           <h1>People</h1>
         </div>

@@ -8,7 +8,7 @@ async function getOpenSourceData() {
     var orgsList = orgsSnapshot.docs.map(doc => {
         return {...doc.data()}
     });
-    console.log('orgs', orgsList);
+    // console.log('orgs', orgsList[0]);
     return orgsList;
   }
 

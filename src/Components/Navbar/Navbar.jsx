@@ -228,7 +228,7 @@ function Navbar({setSearchOpen}) {
                             <div className='openSourceArchive'>
                                 <GoTriangleDown className='triangle'/>
                                 <p className='dropbtn'>
-                                Open Source Archive
+                                NITK Open Source Archive
                                 {
                                 active !== 9 ? null :
                                 <motion.div className={`underline ${top === true ? '' : 'hide'} `} layoutId="underline" />

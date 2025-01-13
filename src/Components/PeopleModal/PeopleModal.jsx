@@ -4,8 +4,8 @@ import default_people from "../../Assets/default_people.svg";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
-const PeopleModal = ({ details, showModal, setShowModal }) =>
-  showModal ? (
+const PeopleModal = ({ details, showModal, setShowModal }) => {
+  return showModal ? (
     <div className="mainDiv">
       <div className="peopleModal">
         <button
@@ -44,14 +44,14 @@ const PeopleModal = ({ details, showModal, setShowModal }) =>
               </div>
 
               <div className="buttons">
-                <button>More Details</button>
-                <button>Organisation</button>
+                <a href={project.link} target="_blank" rel="noreferrer">Project Link</a>
+                <a href={project.org_link} target="_blank" rel="noreferrer">Org Website</a>
               </div>
             </div>
           ))}
         </div>
       </div>
     </div>
-  ) : null;
+  ) : null;}
 
 export default PeopleModal;
