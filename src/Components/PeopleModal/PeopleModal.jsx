@@ -5,6 +5,9 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
 const PeopleModal = ({ details, showModal, setShowModal }) => {
+  const degree = showModal ? details.degree_details : null;
+  const degreeText = degree ? `${degree.admission_year}-${(degree.admission_year + degree.duration_in_years)%100} (${degree.degree_name}, Major: ${degree.major}${degree.minor ? `, Minor: ${degree.minor}` : ""})` : "";
+
   return showModal ? (
     <div className="mainDiv">
       <div className="peopleModal">
@@ -18,7 +21,7 @@ const PeopleModal = ({ details, showModal, setShowModal }) => {
         </button>
         <h2 className="title">{details.name || "Name"}</h2>
         <img src={details.image || default_people} alt="" />
-        <p className="degree">{`${details.department} dept, ${details.admission_year}-${details.admission_year+4}`}</p>
+        <p className="degree">{degreeText}</p>
         <div className="socialMedia">
           {details.github_link && (
             <a href={details.github_link} target="_blank" rel="noreferrer">

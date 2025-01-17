@@ -28,6 +28,10 @@ export default function PeopleCard({
     return filterByFilterKey(people, filter, values);
   });
 
+  const degree = people.degree_details;
+  const degreeText = `${degree.admission_year}-${(degree.admission_year + degree.duration_in_years)%100} (${degree.degree_name}, Major: ${degree.major}${degree.minor ? `, Minor: ${degree.minor}` : ""})`;
+
+
   return (
     matchesFilters && (
       <div className="people-card">
@@ -36,7 +40,7 @@ export default function PeopleCard({
         </div>
         <div className="people-card__details">
           <h3 className="people-name">{people.name}</h3>
-          <p className="people-degree">{`${people.department} dept, ${people.admission_year}-${people.admission_year+4}`}</p>
+          <p className="people-degree">{degreeText}</p>
           <p className="people-tag">{people.categories}</p>
           <div className="year-list">
             {people.year.map((year, index) => (
